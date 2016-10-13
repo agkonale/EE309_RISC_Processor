@@ -16,7 +16,7 @@ architecture Behave of Controller is
   signal State, N_State: Controller_State;
   
 begin
-	process(mem_read,mem_write,T1_write...,reset,clk,Controller_State)
+	process(mem_read,mem_write,T1_write...,reset,clk,Controller_State)	
 	   
 		begin
 		   -- default values.
@@ -46,6 +46,7 @@ begin
 		   end if;
 		     
 	end process;
+	
 end Behave;
 
 
