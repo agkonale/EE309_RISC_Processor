@@ -4,7 +4,7 @@ library work;
 use work.ALU_Components.all;
 
 entity ADDER_16 is
-   port (A, B: in std_logic_vector(15 downto 0); Cin: in std_logic; RESULT: out std_logic_vector(15 downto 0); Cout: out std_logic)
+   port (A, B: in std_logic_vector(15 downto 0); Cin: in std_logic; RESULT: out std_logic_vector(15 downto 0); Cout: out std_logic);
 end entity;
 
 architecture Struct of ADDER_16 is
@@ -29,7 +29,7 @@ FA12: FULL_ADDER port map (A(11),B(11),Carry(10),RESULT(11),Carry(11));
 FA13: FULL_ADDER port map (A(12),B(12),Carry(11),RESULT(12),Carry(12));
 FA14: FULL_ADDER port map (A(13),B(13),Carry(12),RESULT(13),Carry(13));
 FA15: FULL_ADDER port map (A(14),B(14),Carry(13),RESULT(14),Carry(14));
-FA16: FULL_ADDER port map (A(15),B(15),Carry(14),RESULT(15),Cout));
+FA16: FULL_ADDER port map (A(15),B(15),Carry(14),RESULT(15),Cout);
 							
 
 end Struct;
