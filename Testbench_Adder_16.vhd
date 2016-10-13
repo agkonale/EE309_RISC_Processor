@@ -15,6 +15,8 @@ end Struct;
 
 
 
+
+
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -52,3 +54,44 @@ FA16: FULL_ADDER port map (A(15),B(15),Carry(14),RESULT(15),Cout);
 							
 
 end Struct;
+
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity testbench_ADDER_16 is
+end entity testbench_ADDER_16;
+
+
+architecture test of testbench_ADDER_16 is
+
+component ADDER_16 is
+   port (A, B: in std_logic_vector(15 downto 0); Cin: in std_logic; RESULT: out std_logic_vector(15 downto 0); Cout: out std_logic);
+end component;
+
+signal A,B,RESULT : std_logic_vector(15 downto 0);
+signal Cin,Cout :std_logic;
+
+begin 
+	ADDER_1: ADDER_16 port map (A=>A, B=>B, Cin=>Cin, RESULT=>RESULT,Cout=>Cout);
+	
+	testcase :process is
+	begin
+	
+		A<= "1111111111111111";
+		B<= "1111111100000000";
+		Cin<= '0';
+		wait for 10 ns;
+
+		A<= "1111111111111000";
+		B<= "1111111100000000";
+		Cin<= '0';
+		wait for 10 ns;
+
+		
+			
+		wait;
+	end process testcase;
+
+end architecture test;

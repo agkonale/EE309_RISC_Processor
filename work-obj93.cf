@@ -4,8 +4,13 @@ file . "NAND_2.vhd" "20161013121550.000" "20161013180224.462":
   architecture behave of nand_2 at 9( 119) + 0 on 4;
 file . "ALU_Components.vhd" "20161013124228.000" "20161013181331.975":
   package alu_components at 1( 0) + 0 on 4;
-file . "Testbench.vhd" "20161013124802.000" "20161013181805.786":
-  entity full_adder at 1( 0) + 0 on 108;
-  architecture struct of full_adder at 8( 141) + 0 on 109;
-  entity testbench at 19( 280) + 0 on 110;
-  architecture test of testbench at 26( 375) + 0 on 111;
+file . "Testbench.vhd" "20161013125428.000" "20161013182619.702":
+  entity testbench at 19( 280) + 0 on 120;
+  architecture test of testbench at 26( 375) + 0 on 121;
+file . "Testbench_Adder_16.vhd" "20161013130104.000" "20161013183117.112":
+  entity full_adder at 1( 0) + 0 on 128;
+  architecture struct of full_adder at 8( 141) + 0 on 129;
+  entity adder_16 at 20( 282) + 0 on 130;
+  architecture struct of adder_16 at 27( 498) + 0 on 131;
+  entity testbench_adder_16 at 60( 1857) + 0 on 132;
+  architecture test of testbench_adder_16 at 67( 1970) + 0 on 133;
