@@ -1,6 +1,9 @@
+
+
+
 entity MUX_8_1 is
 
- port(X0,X1,X2,X3,X4,X5,X6,X7:std_logic_vector(15 downto 0); Sel: in std_logic_vector(2 downto 0);  Y: out std_logic_vector(15 downto 0));
+ port(X0,X1,X2,X3,X4,X5,X6,X7: in std_logic_vector(15 downto 0); Sel: in std_logic_vector(2 downto 0);  Y: out std_logic_vector(15 downto 0));
 end entity MUX8_1;
 
 architecture behave of MUX_8_1 is

@@ -1,3 +1,5 @@
+
+
 entity DFF is
 	port (D,clk:in bit; Q:inout bit;QN:out bit:='1');
 end entity DFF;
