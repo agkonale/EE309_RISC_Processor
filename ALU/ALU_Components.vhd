@@ -11,16 +11,11 @@ package ALU_Components is
    		port (A, B: in std_logic_vector(15 downto 0); Cin: in std_logic; RESULT: out std_logic_vector(15 downto 0); Cout: out std_logic);
 	end component;
 
-	component NAND_2 is
-		port(x1,x0: in bit;
-			y: out bit);
+
+	component NAND_16 is
+   		port (X1,X0: in std_logic_vector(15 downto 0); Y: out std_logic_vector(15 downto 0));
 	end component;
-
 	
-	
-
 end ALU_Components;
 
---package body MyFsmPack is
- 
---end package body;
+

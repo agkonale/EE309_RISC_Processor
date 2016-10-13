@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
+
 entity FULL_ADDER is
 	port (A, B, Cin: in std_logic; S,Cout: out std_logic);
 end entity;
