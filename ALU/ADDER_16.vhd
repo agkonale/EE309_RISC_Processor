@@ -8,13 +8,10 @@ entity ADDER_16 is
 end entity;
 
 architecture Struct of ADDER_16 is
-
-signal GND :std_logic ;
 signal Carry :std_logic_vector(14 downto 0);
 
 begin
 
-	GND <= '0';
 	FA1: FULL_ADDER port map (A(0),B(0),Cin,RESULT(0),Carry(0));
 	FA2: FULL_ADDER port map (A(1),B(1),Carry(0),RESULT(1),Carry(1));
 	FA3: FULL_ADDER port map (A(2),B(2),Carry(1),RESULT(2),Carry(2));
@@ -32,4 +29,5 @@ begin
 	FA15: FULL_ADDER port map (A(14),B(14),Carry(13),RESULT(14),Carry(14));
 	FA16: FULL_ADDER port map (A(15),B(15),Carry(14),RESULT(15),Cout);
 							
+
 end Struct;
