@@ -1,3 +1,6 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
 entity DEMUX is
  	port(Sel: in std_logic_vector(2 downto 0);  Y: out std_logic_vector(15 downto 0));
 end entity DEMUX;
