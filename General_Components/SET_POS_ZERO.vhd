@@ -17,5 +17,5 @@ begin
           "11000000" when POS = "101" else  
           "10000000" when POS = "110" else  
           "00000000" when POS = "111" else  
-          "----------------";  
+          "--------";  
 end Struct; 

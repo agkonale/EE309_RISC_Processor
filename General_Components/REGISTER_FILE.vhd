@@ -5,14 +5,14 @@ library work;
 use work.General_Components.all;
 
 
-entity Register_File is
+entity REGISTER_FILE is
 	port (A1,A2,A3 :in std_logic_vector(2 downto 0);D3: in std_logic_vector(15 downto 0); reg_write: in std_logic;D1,D2: out std_logic_vector(15 downto 0);
 		  clk: in std_logic);
 end entity;
 
 
 
-architecture Behave of Register_File is
+architecture Behave of REGISTER_FILE is
 
 signal reg_write_enable :std_logic_vector(7 downto 0);
 signal R0,R1,R2,R3,R4,R5,R6,R7 :std_logic_vector(15 downto 0);
