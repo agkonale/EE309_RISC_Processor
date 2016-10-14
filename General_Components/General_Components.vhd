@@ -5,7 +5,7 @@ package General_Components is
 
 
 
-type MEM is array (0 to 1) of std_logic_vector(15 downto 0);
+type MEM is array (0 to 31) of std_logic_vector(15 downto 0);
 
 
 component PRIORITY_ENCODER is  
@@ -18,7 +18,11 @@ end component;
 
 component MUX_16_8 is
  	port(X0,X1,X2,X3,X4,X5,X6,X7: in std_logic_vector(15 downto 0); Sel: in std_logic_vector(2 downto 0);  Y: out std_logic_vector(15 downto 0));
-end component MUX_16_8;
+end component;
+
+component MUX_16_2 is
+ 	port(X0,X1: in std_logic_vector(15 downto 0); Sel: in std_logic;  Y: out std_logic_vector(15 downto 0));
+end component;
 
 component DEMUX is
  	port(Sel: in std_logic_vector(2 downto 0);  Y: out std_logic_vector(7 downto 0));
@@ -31,9 +35,10 @@ component DATA_REGISTER is
 	      clk, enable: in std_logic);
 end component;
 
+
 component REGISTER_FILE is
-	port (A1,A2,A3 :in std_logic_vector(2 downto 0);D3: in std_logic_vector(15 downto 0); reg_write: in std_logic;D1,D2: out std_logic_vector(15 downto 0);
-		  clk: in std_logic);
+	port (A1,A2,A3 :in std_logic_vector(2 downto 0);	DPC,D3: in std_logic_vector(15 downto 0); 
+		 reg_write,PC_write: in std_logic;	D1,D2,PC: out std_logic_vector(15 downto 0); clk,reset: in std_logic);
 end component;
 
 

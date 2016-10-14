@@ -20,8 +20,7 @@ begin
                Dout <= Din;               
            end if;
            
-       end if;
-       
+       end if;       
     end process;
 end Behave;
 
