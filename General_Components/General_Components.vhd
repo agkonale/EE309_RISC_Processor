@@ -50,12 +50,12 @@ component SE6 is
 	port ( X : in std_logic_vector (5 downto 0); Y :out std_logic_vector (15 downto 0));  
 end component;
 
-entity SE9 is  
+component SE9 is  
 	port ( X : in std_logic_vector (8 downto 0); Y :out std_logic_vector (15 downto 0));  
-end SE9;
+end component;
 
-entity SE9' is  
+component SE_9 is  
 	port ( X : in std_logic_vector (8 downto 0); Y :out std_logic_vector (15 downto 0));  
-end SE9'; 
+end component; 
 
 end General_Components;
