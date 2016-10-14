@@ -1,0 +1,123 @@
+$date
+  Fri Oct 14 20:42:55 2016
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$var reg 5 ! address[4:0] $end
+$var reg 16 " din[15:0] $end
+$var reg 16 # dout[15:0] $end
+$var reg 1 $ clk $end
+$var reg 1 % mem_write $end
+$var reg 1 & mem_read $end
+$var reg 1 ' reset $end
+$scope module m1 $end
+$var reg 5 ( address[4:0] $end
+$var reg 16 ) din[15:0] $end
+$var reg 16 * dout[15:0] $end
+$var reg 1 + clk $end
+$var reg 1 , mem_write $end
+$var reg 1 - mem_read $end
+$var reg 1 . reset $end
+$upscope $end
+$enddefinitions $end
+#0
+bUUUUU !
+bUUUUUUUUUUUUUUUU "
+bUUUUUUUUUUUUUUUU #
+1$
+1%
+1&
+0'
+bUUUUU (
+bUUUUUUUUUUUUUUUU )
+bUUUUUUUUUUUUUUUU *
+1+
+1,
+1-
+0.
+#10000000
+0$
+0+
+#20000000
+b00000 !
+1$
+0&
+1'
+b00000 (
+1+
+0-
+1.
+#30000000
+b1111111111111111 #
+0$
+b1111111111111111 *
+0+
+#40000000
+1$
+1&
+1+
+1-
+#50000000
+0$
+0+
+#60000000
+b0000000000001111 "
+1$
+0%
+b0000000000001111 )
+1+
+0,
+#70000000
+0$
+0+
+#80000000
+1$
+1%
+1+
+1,
+#90000000
+0$
+0+
+#100000000
+1$
+0&
+1+
+0-
+#110000000
+b0000000000001111 #
+0$
+b0000000000001111 *
+0+
+#120000000
+1$
+1&
+1+
+1-
+#130000000
+0$
+0+
+#140000000
+1$
+1+
+#150000000
+0$
+0+
+#160000000
+1$
+1+
+#170000000
+0$
+0+
+#180000000
+1$
+1+
+#190000000
+0$
+0+
+#200000000
+1$
+1+

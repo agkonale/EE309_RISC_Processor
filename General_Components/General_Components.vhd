@@ -46,4 +46,16 @@ component MEMORY is
 	      clk,mem_write,mem_read,reset :in std_logic);
 end component;
 
+component SE6 is  
+	port ( X : in std_logic_vector (5 downto 0); Y :out std_logic_vector (15 downto 0));  
+end component;
+
+entity SE9 is  
+	port ( X : in std_logic_vector (8 downto 0); Y :out std_logic_vector (15 downto 0));  
+end SE9;
+
+entity SE9' is  
+	port ( X : in std_logic_vector (8 downto 0); Y :out std_logic_vector (15 downto 0));  
+end SE9'; 
+
 end General_Components;
