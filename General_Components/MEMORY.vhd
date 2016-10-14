@@ -17,7 +17,7 @@ architecture Behave of MEMORY is
 
 begin
 	process(clk,reset,mem_write,mem_read,Address,Din)
-		variable MEM_16X32 : MEM;
+		variable MEM_16X32 : MEM_16(0 to 31);
 		variable Addr_INT :integer;	
 
 		begin	

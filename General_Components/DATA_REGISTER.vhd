@@ -13,12 +13,10 @@ end entity;
 
 
 architecture Behave of DATA_REGISTER is
-signal GND :std_logic_vector(data_width-1 downto 0);
-
 begin
-	GND <= std_logic_vector(to_unsigned(0,data_width));
 	
-    process(clk,reset,Din,enable)
+	process(clk,reset,Din,enable)
+	variable GND :std_logic_vector(data_width-1 downto 0):=std_logic_vector(to_unsigned(0,data_width));
     begin
 
        if(clk'event and (clk  = '0')) then

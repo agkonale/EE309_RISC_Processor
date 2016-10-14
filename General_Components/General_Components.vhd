@@ -3,10 +3,7 @@ use ieee.std_logic_1164.all;
 
 package General_Components is
 
-
-
-type MEM is array (0 to 31) of std_logic_vector(15 downto 0);
-
+type MEM_16 is array (integer range <>) of std_logic_vector(15 downto 0);
 
 component PRIORITY_ENCODER is  
 	port ( X : in std_logic_vector (7 downto 0); Y :out std_logic_vector (2 downto 0));  
