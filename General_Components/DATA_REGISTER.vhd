@@ -1,5 +1,8 @@
+--Generic Register with synchronous reset,active low enable
+
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity DATA_REGISTER is
 	generic (data_width:integer);
@@ -9,16 +12,19 @@ entity DATA_REGISTER is
 end entity;
 
 
-
 architecture Behave of DATA_REGISTER is
+signal GND :std_logic_vector(data_width-1 downto 0);
+
 begin
+	GND <= std_logic_vector(to_unsigned(0,data_width));
+	
     process(clk,reset,Din,enable)
     begin
-    
+
        if(clk'event and (clk  = '0')) then
 
        	   if(reset = '0') then
-       	   		Dout <= '0';
+       	   		Dout <= GND;
        	   		
            elsif(enable = '0') then           
            		Dout <= Din;               
