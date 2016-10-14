@@ -1,12 +1,15 @@
 v 3
-file . "REGISTER_FILE.vhd" "20161014081838.000" "20161014165908.705":
-  entity register_file at 1( 0) + 0 on 109;
-  architecture behave of register_file at 15( 333) + 0 on 110;
-file . "DATA_REGISTER.vhd" "20161014083450.000" "20161014165906.941":
-  entity data_register at 3( 63) + 0 on 107;
-  architecture behave of data_register at 15( 368) + 0 on 108;
-file . "General_Components.vhd" "20161014112846.000" "20161014165851.618":
-  package general_components at 1( 0) + 0 on 104;
+file . "SET_POS_ZERO.vhd" "20161014142110.000" "20161014195117.315":
+  entity set_pos_zero at 1( 0) + 0 on 123;
+  architecture struct of set_pos_zero at 8( 246) + 0 on 124;
 file . "MEMORY.VHD" "20161014112832.000" "20161014165857.232":
   entity memory at 1( 0) + 0 on 105;
   architecture behave of memory at 16( 363) + 0 on 106;
+file . "General_Components.vhd" "20161014112846.000" "20161014165851.618":
+  package general_components at 1( 0) + 0 on 104;
+file . "DATA_REGISTER.vhd" "20161014083450.000" "20161014165906.941":
+  entity data_register at 3( 63) + 0 on 107;
+  architecture behave of data_register at 15( 368) + 0 on 108;
+file . "REGISTER_FILE.vhd" "20161014081838.000" "20161014165908.705":
+  entity register_file at 1( 0) + 0 on 109;
+  architecture behave of register_file at 15( 333) + 0 on 110;
