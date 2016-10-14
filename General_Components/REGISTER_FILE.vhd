@@ -31,46 +31,44 @@ begin
 
 	REG_0 :DATA_REGISTER 
 	generic map(16)
-	port map(D3,R0,clk,enable(0));
+	port map(D3,R0,clk,enable(0),reset);
 	
 	REG_1 :DATA_REGISTER 
 	generic map(16)
-	port map(D3,R1,clk, enable(1));
+	port map(D3,R1,clk, enable(1),reset);
 	
 	REG_2 :DATA_REGISTER
 	generic map(16)
-	port map(D3,R2,clk, enable(2));
+	port map(D3,R2,clk, enable(2),reset);
 	
 	REG_3 :DATA_REGISTER 
 	generic map(16)
-	port map(D3,R3,clk, enable(3));
+	port map(D3,R3,clk, enable(3),reset);
 	
 	REG_4 :DATA_REGISTER 
 	generic map(16)
-	port map(D3,R4,clk,enable(4));
+	port map(D3,R4,clk,enable(4),reset);
 	
 	REG_5 :DATA_REGISTER 
 	generic map(16)
-	port map(D3,R5,clk, enable(5));
+	port map(D3,R5,clk, enable(5),reset);
 	
 	REG_6 :DATA_REGISTER 
 	generic map(16)
-	port map(D3,R6,clk,enable(6));
+	port map(D3,R6,clk,enable(6),reset);
 	
 	REG_7 :DATA_REGISTER 
 	generic map(16)
-	port map(Sig_R7,R7,clk,enable(7)) ;
+	port map(Sig_R7,R7,clk,enable(7),reset) ;
 
 
     PC <= R7;
 
 	DMX : DEMUX port map(A3,DMX_OUT) ;
 
-	MUX_0 :MUX_16_8 port map(R0,R1,R2,R3,R4,R5,
-							R6,R7,A1,D1);
+	MUX_0 :MUX_16_8 port map(R0,R1,R2,R3,R4,R5,R6,R7,A1,D1);
 							
-	MUX_1 :MUX_16_8 port map(R0,R1,R2,R3,R4,R5,
-							R6,R7,A2,D2);
+	MUX_1 :MUX_16_8 port map(R0,R1,R2,R3,R4,R5,R6,R7,A2,D2);
 
 	MUX_2 :MUX_16_2 port map(D3,DPC,PC_write,Sig_R7);
  			
