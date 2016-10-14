@@ -10,14 +10,8 @@ end entity;
 architecture Behave of COMPARATOR is
 begin
 
-	process(X1,X0) is
-		begin
-		if X1 = X0 then
-			Z <= '1';
-		else 
-			Z <= '0';
-		end if;
-	end process;
+Z <= '1' when X1 = X0 else  
+     '0';
 	
 end Behave;
 
