@@ -10,6 +10,7 @@ architecture Struct of SE6 is
 begin  
      Y(5 downto 0) <=  X;
      Y(15 downto 6) <=	"1111111111" when X(5) = '1' else
-     					"0000000000"when X(5) = '0';
+     					"0000000000" when X(5) = '0' else
+     					"----------";
      
 end Struct; 

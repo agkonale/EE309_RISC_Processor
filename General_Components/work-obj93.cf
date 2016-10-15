@@ -1,7 +1,4 @@
 v 3
-file . "Memory.vhd" "20161014200004.000" "20161015013243.145":
-  entity memory at 1( 0) + 0 on 180;
-  architecture behave of memory at 16( 363) + 0 on 181;
 file . "testbench_mem.vhd" "20161014151244.000" "20161014204252.677":
   entity testbench_mem at 1( 0) + 0 on 175;
   architecture test of testbench_mem at 12( 156) + 0 on 176;
@@ -16,3 +13,6 @@ file . "DATA_REGISTER.vhd" "20161014083450.000" "20161014165906.941":
 file . "REGISTER_FILE.vhd" "20161014081838.000" "20161014165908.705":
   entity register_file at 1( 0) + 0 on 109;
   architecture behave of register_file at 15( 333) + 0 on 110;
+file . "MEMORY.vhd" "20161015065022.000" "20161015122032.772":
+  entity memory at 1( 0) + 0 on 196;
+  architecture behave of memory at 16( 363) + 0 on 197;
