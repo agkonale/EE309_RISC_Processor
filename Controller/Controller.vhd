@@ -24,25 +24,26 @@ end entity Controller;
 
 
 architecture Behave of Controller is
-  signal State, N_State: Controller_State;
+  signal State: Controller_State;
   
 begin
 
 --State Control Process
-	process(reset,clk,IR,Controller_State)	
+	process(reset,clk,IR,State)	
+		variable N_State :Controller_State;
 	   
 		begin
 		   -- default values.
-		   N_State <= S_init;
+		   N_State := S_init;
 		   
 		   case State is
 			when  S_init => 
 				case IR(15 downto 12) is
 					when "   " =>
-						N_State <=
+						N_State :=
 
 					when "   " =>
-						N_State <=
+						N_State :=
 
 
 
@@ -55,14 +56,14 @@ begin
 				case IR(15 downto 12) is
 					when "   " =>
 						if(Flag = ) then		--C/Z 
-							N_State <= ;
+							N_State := ;
 						else 
 						
 						end if;
 
 					when "   " =>
 						if(Flag = ) then
-							N_State <= ;
+							N_State := ;
 						else 
 						
 						end if;
@@ -98,11 +99,8 @@ begin
 
 
 
-
-
-
 --Output Logic Process
-	process(reset,clk,IR,Controller_State)
+	process(reset,clk,IR,State)
 		begin			   		   
 			   if(clk'event and clk = '0') then
 				 if(reset='0') then
