@@ -1,7 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
---library work;
---use work.components.all;
+library work;
+use work.components.all;
 
 
 type Controller_State is (	S_init,	S_reg_read,	S_alu_op,	S_reg_write,	S_right_pad,	S_reg_write,			--Abstract type for State representation
@@ -18,7 +18,7 @@ entity Controller is
   		ir_out: in std_logic_vector(15 downto 0);
         clk: in std_logic;
 		reset: in std_logic
-		reg_write, PC_write, t1_write, t2_write, t3_write, t4_write, t5_write, mem_write, mem_read, ir_write, clk, reset: out std_logic); --Control signals to Datapath
+		reg_write, PC_write, t1_write, t2_write, t3_write, t4_write, t5_write, mem_write, mem_read, ir_write, alu_enable, c_write, z_write, PE_write, PE_reg_write: out std_logic); --Control signals to Datapath
 end entity Controller;
 
 
@@ -215,16 +215,15 @@ case State is
 				
 end case;
 		   		   
-		   if(clk'event and clk = '0') then
-			 if(reset='0') then
-			   State <= S_init;
-			   
-			 else
-			   State <= N_State;
-			 end if;
-		   end if;
+	   if(clk'event and clk = '0') then
+		 if(reset='0') then
+		   State <= S_init;
+		 else
+		   State <= next_State;
+		 end if;
+	   end if;
 		     
-	end process;
+end process;
 
 
 
@@ -241,25 +240,352 @@ end case;
 			   if(clk'event and clk = '0') then
 				 if(reset='0') then
 				 --Default outputs
-				   
+				 			reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+						 	PE_write <= '0';
+						 	PE_reg_write <= '0';  
 				 else
 					 case State is
+					 
 						 when  S_init => 
-
-						 
-						   						   
+						 	reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '1';
+						 	mem_write <= '0';
+						 	mem_read <= '1';
+						 	ir_write <= '1';
+						 	alu_enable <= '1';
+						 	c_write <= '0';
+						 	z_write <= '0';
+						 	  
 						 when  S_reg_read =>
-						 
-						 
-
+						 	reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '1';
+						 	t2_write <= '1';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+						 	c_write <= '0';
+						 	z_write <= '0';
+						 	  
 						 when  S_alu_op =>
+					 		reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '1';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '1';
+							c_write <= '1';
+						 	z_write <= '1';
+						 	  
+						when S_reg_write =>
+				 			reg_write <='1';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
 
-
-
-
-
-						 
+						 when S_write_pad_reg_write =>
+				 			reg_write <='1';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
 						   				   
+						 when S_mem_read =>
+				 			reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '1';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '1';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+						 	
+						when S_reg_write_2 =>
+				 			reg_write <='1';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+						 	
+					 	when S_reg_write_from_T4 =>
+				 			reg_write <='1';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+				   	 
+				   	 	when S_reg_write_from_PE =>
+				 			reg_write <='1';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+						 	
+						when S_reg_read_1 =>
+				 			reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '1';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+				   	 
+				   	 	when S_alu_op_imm6 =>
+				 			reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '1';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '1';
+							c_write <= '1';
+						 	z_write <= '1';
+						 	
+						when S_mem_write =>
+				 			reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '1';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+				   	 
+				   	 	when S_T3_to_PC =>
+				 			reg_write <='0';
+						 	PC_write <= '1';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+				   	 	
+				   	 	when S_alu_pad_6 =>
+				 			reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '1';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '1';
+							c_write <= '0';
+						 	z_write <= '0';
+				   	 
+				   	 	when S_write_PC =>
+				 			reg_write <='0';
+						 	PC_write <= '1';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+				   	 
+				   	 	when S_PC_loop =>
+				 			reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+						 	PE_write <= '1';
+						 	PE_reg_write <= '0';
+ 
+				   	 	when S_T3_inc =>
+				 			reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '1';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '1';
+							c_write <= '0';
+						 	z_write <= '0';
+						 	PE_write <= '0';
+						 	PE_reg_write <= '0';
+
+				   	 	when S_alu_pad_9 =>
+				 			reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '1';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '1';
+							c_write <= '0';
+						 	z_write <= '0';
+						 	PE_write <= '0';
+						 	PE_reg_write <= '0';
+
+				   	 	when S_reg_read_write =>
+				 			reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '1';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+						 	PE_write <= '0';
+						 	PE_reg_write <= '1';
+
+				   	 	when S_reg_read_from_PE =>
+				 			reg_write <='0';
+						 	PC_write <= '0';
+						 	t1_write <= '1';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+						 	PE_write <= '0';
+						 	PE_reg_write <= '0';
+
+				   	 	when S_update_PC=>
+				 			reg_write <='0';
+						 	PC_write <= '1';
+						 	t1_write <= '0';
+						 	t2_write <= '0';
+						 	t3_write <= '0';
+						 	t4_write <= '0';
+						 	t5_write <= '0';
+						 	mem_write <= '0';
+						 	mem_read <= '0';
+						 	ir_write <= '0';
+						 	alu_enable <= '0';
+							c_write <= '0';
+						 	z_write <= '0';
+						 	PE_write <= '0';
+						 	PE_reg_write <= '0';
+
+
 				   	 end case; 
 				   
 				 end if;
