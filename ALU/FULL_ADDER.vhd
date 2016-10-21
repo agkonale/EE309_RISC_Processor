@@ -9,7 +9,7 @@ end entity;
 architecture Struct of FULL_ADDER is
 begin
 
-	Cout <= (A and B) or (Cin and (A xor B));
-	S <= A xor B xor Cin;
+	Cout	<=	(A and B) or (Cin and (A xor B));
+	S		<=	(A xor B) xor Cin;
 	
 end Struct;

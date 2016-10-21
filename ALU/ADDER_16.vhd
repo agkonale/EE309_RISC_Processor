@@ -1,14 +1,19 @@
 library ieee;
 use ieee.std_logic_1164.all;
+
 library work;
 use work.ALU_Components.all;
 
 entity ADDER_16 is
-   port (A, B: in std_logic_vector(15 downto 0); Cin: in std_logic; RESULT: out std_logic_vector(15 downto 0); Cout: out std_logic);
+   port (A, B: in std_logic_vector(15 downto 0); 
+   		 Cin: in std_logic; 
+   		 RESULT: out std_logic_vector(15 downto 0); 
+   		 Cout: out std_logic);
 end entity;
 
 architecture Struct of ADDER_16 is
-signal Carry :std_logic_vector(14 downto 0);
+signal Carry :std_logic_vector(15 downto 0);
+signal Temp_15 :std_logic;
 
 begin
 
@@ -27,7 +32,11 @@ begin
 	FA13: FULL_ADDER port map (A(12),B(12),Carry(11),RESULT(12),Carry(12));
 	FA14: FULL_ADDER port map (A(13),B(13),Carry(12),RESULT(13),Carry(13));
 	FA15: FULL_ADDER port map (A(14),B(14),Carry(13),RESULT(14),Carry(14));
-	FA16: FULL_ADDER port map (A(15),B(15),Carry(14),RESULT(15),Cout);
-							
+	FA16: FULL_ADDER port map (A(15),B(15),Carry(14),Temp_15,Carry(15));
+
+	RESULT(15)	<=	(not Temp_15) when (Carry(15) = '0' and Carry(14) = '1') or (Carry(15) = '1' and Carry(14) = '0') else		--Handle Overflow
+				  	Temp_15;
+	
+	Cout 		<= 	Carry(15);			
 
 end Struct;

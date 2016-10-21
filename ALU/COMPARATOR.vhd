@@ -14,6 +14,3 @@ Z <= '1' when X1 = X0 else
      '0';
 	
 end Behave;
-
-
-

@@ -1,26 +1,32 @@
 v 3
-file . "ALU.vhd" "20161014204130.000" "20161015021136.549":
-  entity alu at 1( 0) + 0 on 57;
-  architecture struct of alu at 13( 359) + 0 on 58;
-file . "General_Components.vhd" "20161014200216.000" "20161015014512.312":
-  package general_components at 1( 0) + 0 on 50;
-file . "ADDER_16.vhd" "20161013175150.000" "20161013232252.784":
-  entity adder_16 at 1( 0) + 0 on 40;
-  architecture struct of adder_16 at 10( 261) + 0 on 41;
-file . "NAND_16.vhd" "20161013175200.000" "20161013232259.878":
-  entity nand_16 at 1( 0) + 0 on 42;
-  architecture struct of nand_16 at 10( 175) + 0 on 43;
-file . "FULL_ADDER.vhd" "20161013175136.000" "20161013232229.452":
-  entity full_adder at 1( 0) + 0 on 37;
-  architecture struct of full_adder at 9( 141) + 0 on 38;
-file . "ALU_Components.vhd" "20161013180506.000" "20161013233554.522":
-  package alu_components at 1( 0) + 0 on 6;
+file . "Testbench_ALU.vhd" "20161021175652.000" "20161021233542.451":
+  entity testbench_alu at 1( 0) + 0 on 399;
+  architecture behave of testbench_alu at 19( 215) + 0 on 400;
+file . "DATA_REGISTER.vhd" "20161021142138.000" "20161021233542.451":
+  entity data_register at 3( 45) + 0 on 407;
+  architecture behave of data_register at 15( 350) + 0 on 408;
+file . "COMPARATOR.vhd" "20161019072946.000" "20161021233542.451":
+  entity comparator at 1( 0) + 0 on 405;
+  architecture behave of comparator at 10( 158) + 0 on 406;
 file . "Testbench_NAND.vhd" "20161013173438.000" "20161013233554.523":
   entity testbench_nand_16 at 1( 0) + 0 on 4;
   architecture test of testbench_nand_16 at 11( 158) + 0 on 4;
-file . "COMPARATOR.vhd" "20161013181928.000" "20161013234940.625":
-  entity comparator at 1( 0) + 0 on 48;
-  architecture behave of comparator at 10( 158) + 0 on 49;
-file . "DATA_REGISTER.vhd" "20161014083450.000" "20161015014956.038":
-  entity data_register at 3( 63) + 0 on 51;
-  architecture behave of data_register at 15( 368) + 0 on 52;
+file . "ALU_Components.vhd" "20161021180524.000" "20161021233542.451":
+  package alu_components at 1( 0) + 0 on 398;
+file . "FULL_ADDER.vhd" "20161021140400.000" "20161021233542.451":
+  entity full_adder at 1( 0) + 0 on 409;
+  architecture struct of full_adder at 9( 141) + 0 on 410;
+file . "NAND_16.vhd" "20161021175618.000" "20161021233351.038":
+  entity nand_16 at 1( 0) + 0 on 364;
+  architecture struct of nand_16 at 11( 183) + 0 on 365;
+file . "ADDER_16.vhd" "20161021175454.000" "20161021233542.451":
+  entity adder_16 at 1( 0) + 0 on 403;
+  architecture struct of adder_16 at 14( 287) + 0 on 404;
+file . "General_Components.vhd" "20161021172750.000" "20161021233542.450":
+  package general_components at 1( 0) + 0 on 397;
+file . "ALU.vhd" "20161021180514.000" "20161021233542.451":
+  entity alu at 1( 0) + 0 on 401;
+  architecture struct of alu at 17( 382) + 0 on 402;
+file . "Testbench.vhd" "20161017103424.000" "20161017161240.316":
+  entity testbench at 1( 0) + 0 on 134;
+  architecture behave of testbench at 13( 199) + 0 on 135;
