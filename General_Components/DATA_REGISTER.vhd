@@ -17,11 +17,11 @@ process(clk)
 	variable GND :std_logic_vector(data_width-1 downto 0):=std_logic_vector(to_unsigned(0,data_width));	
 	begin
 	   if(clk'event and (clk  = '1')) then      
-	   	   if(reset = '1') then
-	   	   		Dout <= GND;       	   		
-	       elsif(enable = '1') then           
-	       		Dout <= Din;            		             
-	       end if;                      
+		   if(reset = '1') then
+		   	Dout <= GND;       	   		
+		   elsif(enable = '1') then           
+			Dout <= Din;            		             
+		   end if;                      
 	   end if;              
 end process;
 end Behave;
