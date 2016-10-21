@@ -31,10 +31,10 @@ if(clk'event and (clk  = '1')) then
 		REG_16X8(6)	<= "0000000000000000";
 		REG_16X8(7)	<= "0000000000000000";
 	elsif(reg_write = '1') then 
-		A3_INT 				    := to_integer(unsigned(A3));   
-		REG_16X8 (A3_INT)		<=  D3 ;
+		A3_INT 			:= to_integer(unsigned(A3));   
+		REG_16X8 (A3_INT)	<=  D3 ;
 	elsif(PC_write = '1') then 		
-		REG_16X8 (7)			<=  DPC;
+		REG_16X8 (7)		<=  DPC;
 	end if;
 end if;		
 end process;
@@ -44,15 +44,15 @@ variable A1_INT,A2_INT :integer range 0 to 7;
 begin
 if(clk'event and (clk  = '1')) then	
 	if(reset='1') then
-		D1		<= "0000000000000000";
-		D2		<= "0000000000000000"; 
-		PC 		<= "0000000000000000";
+		D1	<= "0000000000000000";
+		D2	<= "0000000000000000"; 
+		PC 	<= "0000000000000000";
 	else		
 		A1_INT	:= to_integer(unsigned(A1)); 
 		A2_INT	:= to_integer(unsigned(A2));  
-		D1		<= REG_16X8(A1_INT); 
-		D2		<= REG_16X8(A2_INT); 
-		PC 		<= REG_16X8(7);
+		D1	<= REG_16X8(A1_INT); 
+		D2	<= REG_16X8(A2_INT); 
+		PC 	<= REG_16X8(7);
 	end if;
 end if;
 end process;
