@@ -6,11 +6,11 @@ library work;
 use work.General_Components.all;
 
 entity REGISTER_FILE is
-	port	(A1,A2,A3 :in std_logic_vector(2 downto 0); 
-			DPC,D3: in std_logic_vector(15 downto 0); 
-			reg_write,PC_write: in std_logic; 
-			D1,D2,PC: out std_logic_vector(15 downto 0); 
-			clk,reset: in std_logic);	 
+	port  (A1,A2,A3 :in std_logic_vector(2 downto 0); 
+		  DPC,D3: in std_logic_vector(15 downto 0); 
+		  reg_write,PC_write: in std_logic; 
+		  D1,D2,PC: out std_logic_vector(15 downto 0); 
+		  clk,reset: in std_logic);	 
 end entity;
 
 architecture Behave of REGISTER_FILE is
