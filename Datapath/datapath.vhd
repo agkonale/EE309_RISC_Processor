@@ -6,7 +6,6 @@ use work.ALU_Components.all;
 library work;
 use work.General_Components.all;
 
-
 entity datapath is
    port (clk, reset: in std_logic; 
    
