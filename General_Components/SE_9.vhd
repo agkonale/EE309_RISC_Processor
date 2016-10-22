@@ -9,6 +9,9 @@ end SE_9;
 architecture Struct of SE_9 is  
 begin  
      Y(8 downto 0)	<=  X;
-     Y(15 downto 9) <=	"0000000" ;
-     
+     Y(15 downto 9) <=	"0000000" when X(8) = '0' else
+     					"1111111" when X(8) = '1' else
+     					"-------";
 end Struct; 
+
+
