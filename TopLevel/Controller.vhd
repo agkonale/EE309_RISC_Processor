@@ -375,8 +375,17 @@ end process;
 						 	alu_enable <= '1';
 							c_write <= '1';
 						 	z_write <= '1';
-					alu_control <= "11";
-
+						 	
+						 	if (ir_out(15 downto 13) = "000") then	-- ADD/ADI
+						 		alu_control<="00";
+						 	elsif (ir_out(15 downto 12) = "0010") then	--NAND
+						 		alu_control<="01";
+						 	elsif (ir_out(15 downto 12) = "1100") then  -- BEQ
+						 		alu_control<="10";
+						 	else
+						 		alu_control<="11";
+							end if;
+					
 					 Set_Pos_Zero_init <= '0';
 
 					 MUX_1_Sel <="00";
@@ -871,7 +880,7 @@ alu_control <= "11";
 						 	PE_write <= '0';
 						 	PE_reg_write <= '0';
 
-alu_control <= "11";
+alu_control <= "11 ";
 
 					 Set_Pos_Zero_init <= '0';
 
