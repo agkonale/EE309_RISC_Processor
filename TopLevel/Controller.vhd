@@ -285,11 +285,12 @@ end process;
 	 			     t4_write <= '0';
 	 			     t5_write <= '0';
 	  		 
-	 			     Set_Pos_Zero_init <= '0';
-	 			     PE_write <= '0';
+   	 			     PE_write <= '0';
 	 			     PE_reg_write <= '0';
 	 
-					 alu_control <= "00";
+					 alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
 
 					 MUX_1_Sel <="00";
 					 MUX_2_Sel <="00";
@@ -321,6 +322,17 @@ end process;
 						 	c_write <= '0';
 						 	z_write <= '0';
 
+					 alu_control <= "00";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="11";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";
+					 MUX_6_Sel <="11";
+					 MUX_7_Sel <="100";
 						 	
 						 when  S_reg_read =>
 						 	reg_write <='0';
@@ -337,6 +349,17 @@ end process;
 						 	c_write <= '0';
 						 	z_write <= '0';
 
+					 alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="11";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
 						 						 	  
 						 when  S_alu_op =>
 					 		reg_write <='0';
@@ -352,7 +375,17 @@ end process;
 						 	alu_enable <= '1';
 							c_write <= '1';
 						 	z_write <= '1';
+					alu_control <= "11";
 
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="10";
+					 MUX_7_Sel <="111";
 						 	  
 						when S_reg_write =>
 				 			reg_write <='1';
@@ -369,6 +402,17 @@ end process;
 							c_write <= '0';
 						 	z_write <= '0';
 
+					alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="11"; 
+					 MUX_4_Sel <="111";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
 						 when S_right_pad_reg_write =>
 				 			reg_write <='1';
 						 	PC_write <= '0';
@@ -383,6 +427,18 @@ end process;
 						 	alu_enable <= '0';
 							c_write <= '0';
 						 	z_write <= '0';
+						   			
+						   	alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="11"; 
+					 MUX_4_Sel <="110";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";		
 						   				   
 						 when S_mem_read =>
 				 			reg_write <='0';
@@ -398,6 +454,17 @@ end process;
 						 	alu_enable <= '0';
 							c_write <= '0';
 						 	z_write <= '0';
+						 	alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="10";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
 						 	
 						when S_reg_write_2 =>
 				 			reg_write <='1';
@@ -414,6 +481,17 @@ end process;
 							c_write <= '0';
 						 	z_write <= '0';
 						 	
+						 	alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="11"; 
+					 MUX_4_Sel <="101";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
 					 	when S_reg_write_from_T4 =>
 				 			reg_write <='1';
 						 	PC_write <= '0';
@@ -428,6 +506,18 @@ end process;
 						 	alu_enable <= '0';
 							c_write <= '0';
 						 	z_write <= '0';
+				   	 
+				   	 alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="11"; 
+					 MUX_4_Sel <="100";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
 				   	 
 				   	 	when S_reg_write_from_PE =>
 				 			reg_write <='1';
@@ -444,6 +534,18 @@ end process;
 							c_write <= '0';
 						 	z_write <= '0';
 						 	
+						 	alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="10"; 
+					 MUX_4_Sel <="100";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
+						 	
 						when S_reg_read_1 =>
 				 			reg_write <='0';
 						 	PC_write <= '0';
@@ -458,6 +560,18 @@ end process;
 						 	alu_enable <= '0';
 							c_write <= '0';
 						 	z_write <= '0';
+				   	 
+				   	 alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="10";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
 				   	 
 				   	 	when S_alu_op_imm_6 =>
 				 			reg_write <='0';
@@ -474,6 +588,18 @@ end process;
 							c_write <= '1';
 						 	z_write <= '1';
 						 	
+						 	alu_control <= "00";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="10";
+					 MUX_7_Sel <="101";
+						 	
 						when S_mem_write =>
 				 			reg_write <='0';
 						 	PC_write <= '0';
@@ -488,6 +614,18 @@ end process;
 						 	alu_enable <= '0';
 							c_write <= '0';
 						 	z_write <= '0';
+				   	 alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
+				   	 
 				   	 
 				   	 	when S_T3_to_PC =>
 				 			reg_write <='0';
@@ -504,6 +642,18 @@ end process;
 							c_write <= '0';
 						 	z_write <= '0';
 				   	 	
+				   	 	alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="11";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
+				   	 	
 				   	 	when S_alu_pad_6 =>
 				 			reg_write <='0';
 						 	PC_write <= '0';
@@ -519,6 +669,18 @@ end process;
 							c_write <= '0';
 						 	z_write <= '0';
 				   	 
+				   	 alu_control <= "00";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="11";
+					 MUX_7_Sel <="101";
+				   	 
 				   	 	when S_write_PC =>
 				 			reg_write <='0';
 						 	PC_write <= '1';
@@ -533,6 +695,18 @@ end process;
 						 	alu_enable <= '0';
 							c_write <= '0';
 						 	z_write <= '0';
+				   	 
+				   	 alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="10";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
 				   	 
 				   	 	when S_PC_loop =>
 				 			reg_write <='0';
@@ -551,6 +725,19 @@ end process;
 						 	PE_write <= '1';
 						 	PE_reg_write <= '0';
  
+ 
+ alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
+				   	 	
 				   	 	when S_T3_inc =>
 				 			reg_write <='0';
 						 	PC_write <= '0';
@@ -567,7 +754,19 @@ end process;
 						 	z_write <= '0';
 						 	PE_write <= '0';
 						 	PE_reg_write <= '0';
+	
+		alu_control <= "00";
 
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="01";
+					 MUX_7_Sel <="100";
+				   	 	
 				   	 	when S_alu_pad_9 =>
 				 			reg_write <='0';
 						 	PC_write <= '0';
@@ -584,6 +783,18 @@ end process;
 						 	z_write <= '0';
 						 	PE_write <= '0';
 						 	PE_reg_write <= '0';
+
+alu_control <= "00";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="11";
+					 MUX_7_Sel <="110";
 
 				   	 	when S_reg_read_write =>
 				 			reg_write <='0';
@@ -602,6 +813,18 @@ end process;
 						 	PE_write <= '0';
 						 	PE_reg_write <= '1';
 
+alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="10";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
+
 				   	 	when S_reg_read_from_PE =>
 				 			reg_write <='0';
 						 	PC_write <= '0';
@@ -619,6 +842,18 @@ end process;
 						 	PE_write <= '0';
 						 	PE_reg_write <= '0';
 
+alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="01";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="00";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
+
 				   	 	when S_update_PC=>
 				 			reg_write <='0';
 						 	PC_write <= '1';
@@ -635,6 +870,18 @@ end process;
 						 	z_write <= '0';
 						 	PE_write <= '0';
 						 	PE_reg_write <= '0';
+
+alu_control <= "11";
+
+					 Set_Pos_Zero_init <= '0';
+
+					 MUX_1_Sel <="00";
+					 MUX_2_Sel <="00";
+					 MUX_3_Sel <="00"; 
+					 MUX_4_Sel <="000";
+					 MUX_5_Sel <="01";; 
+					 MUX_6_Sel <="00";
+					 MUX_7_Sel <="000";
 
 
 				   	 end case; 
