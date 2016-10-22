@@ -1,42 +1,42 @@
 v 3
-file . "SE_9.vhd" "20161022042254.000" "20161022095404.511":
-  entity se_9 at 1( 0) + 0 on 335;
-  architecture struct of se_9 at 9( 179) + 0 on 336;
-file . "SE9.vhd" "20161022042228.000" "20161022095404.507":
-  entity se9 at 1( 0) + 0 on 331;
-  architecture struct of se9 at 9( 177) + 0 on 332;
-file . "SE6.vhd" "20161022042258.000" "20161022095404.505":
-  entity se6 at 1( 0) + 0 on 329;
-  architecture struct of se6 at 9( 177) + 0 on 330;
-file . "PRIORITY_ENCODER.vhd" "20161021172818.000" "20161022095404.499":
-  entity priority_encoder at 1( 0) + 0 on 325;
-  architecture struct of priority_encoder at 9( 202) + 0 on 326;
-file . "MUX_16_8.vhd" "20161017120432.000" "20161021200104.647":
-  entity mux_16_8 at 1( 0) + 0 on 238;
-  architecture struct of mux_16_8 at 8( 236) + 0 on 239;
-file . "MUX_16_2.vhd" "20161017120428.000" "20161021200104.644":
-  entity mux_16_2 at 1( 0) + 0 on 236;
-  architecture struct of mux_16_2 at 8( 199) + 0 on 237;
-file . "DEMUX.vhd" "20161015065126.000" "20161021200104.637":
-  entity demux at 1( 0) + 0 on 231;
-  architecture behave of demux at 8( 170) + 0 on 232;
-file . "Testbench_Memory.vhd" "20161016171936.000" "20161016233614.484":
-  entity testbench at 1( 0) + 0 on 204;
-  architecture behave of testbench at 10( 156) + 0 on 205;
-file . "MEMORY.vhd" "20161021173930.000" "20161022095404.497":
-  entity memory at 1( 0) + 0 on 323;
-  architecture behave of memory at 15( 360) + 0 on 324;
-file . "REGISTER_FILE.vhd" "20161021172824.000" "20161022095404.502":
-  entity register_file at 1( 0) + 0 on 327;
-  architecture behave of register_file at 16( 389) + 0 on 328;
-file . "DATA_REGISTER.vhd" "20161021181100.000" "20161022095404.492":
-  entity data_register at 2( 43) + 0 on 320;
-  architecture behave of data_register at 14( 348) + 0 on 321;
-file . "General_Components.vhd" "20161021172750.000" "20161022095404.494":
-  package general_components at 1( 0) + 0 on 322;
-file . "SET_POS_ZERO.vhd" "20161021172946.000" "20161022095404.509":
-  entity set_pos_zero at 1( 0) + 0 on 333;
-  architecture struct of set_pos_zero at 11( 264) + 0 on 334;
 file . "testbench_mem.vhd" "20161014151244.000" "20161014204252.677":
   entity testbench_mem at 1( 0) + 0 on 175;
   architecture test of testbench_mem at 12( 156) + 0 on 176;
+file . "SET_POS_ZERO.vhd" "20161021172946.000" "20161022104356.421":
+  entity set_pos_zero at 1( 0) + 0 on 350;
+  architecture struct of set_pos_zero at 11( 264) + 0 on 351;
+file . "General_Components.vhd" "20161021172750.000" "20161022104356.408":
+  package general_components at 1( 0) + 0 on 339;
+file . "DATA_REGISTER.vhd" "20161021181100.000" "20161022104356.407":
+  entity data_register at 2( 43) + 0 on 337;
+  architecture behave of data_register at 14( 348) + 0 on 338;
+file . "REGISTER_FILE.vhd" "20161021172824.000" "20161022104356.414":
+  entity register_file at 1( 0) + 0 on 344;
+  architecture behave of register_file at 16( 389) + 0 on 345;
+file . "MEMORY.vhd" "20161021173930.000" "20161022104356.410":
+  entity memory at 1( 0) + 0 on 340;
+  architecture behave of memory at 15( 360) + 0 on 341;
+file . "Testbench_Memory.vhd" "20161016171936.000" "20161016233614.484":
+  entity testbench at 1( 0) + 0 on 204;
+  architecture behave of testbench at 10( 156) + 0 on 205;
+file . "DEMUX.vhd" "20161015065126.000" "20161021200104.637":
+  entity demux at 1( 0) + 0 on 231;
+  architecture behave of demux at 8( 170) + 0 on 232;
+file . "MUX_16_2.vhd" "20161017120428.000" "20161021200104.644":
+  entity mux_16_2 at 1( 0) + 0 on 236;
+  architecture struct of mux_16_2 at 8( 199) + 0 on 237;
+file . "MUX_16_8.vhd" "20161017120432.000" "20161021200104.647":
+  entity mux_16_8 at 1( 0) + 0 on 238;
+  architecture struct of mux_16_8 at 8( 236) + 0 on 239;
+file . "PRIORITY_ENCODER.vhd" "20161021172818.000" "20161022104356.412":
+  entity priority_encoder at 1( 0) + 0 on 342;
+  architecture struct of priority_encoder at 9( 202) + 0 on 343;
+file . "SE6.vhd" "20161022042408.000" "20161022104356.416":
+  entity se6 at 1( 0) + 0 on 346;
+  architecture struct of se6 at 9( 177) + 0 on 347;
+file . "SE9.vhd" "20161022042228.000" "20161022104356.418":
+  entity se9 at 1( 0) + 0 on 348;
+  architecture struct of se9 at 9( 177) + 0 on 349;
+file . "SE_9.vhd" "20161022051334.000" "20161022104356.423":
+  entity se_9 at 1( 0) + 0 on 352;
+  architecture struct of se_9 at 9( 179) + 0 on 353;
