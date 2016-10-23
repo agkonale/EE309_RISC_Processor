@@ -16,7 +16,7 @@ entity Controller is
    		 Set_Pos_Zero_init,PE_write,PE_reg_write: out std_logic; 
    		 
    		 alu_control: out std_logic_vector (1 downto 0); 
-
+		 alu_enable: out std_logic;
    		 MUX_1_Sel :out std_logic_vector (1 downto 0); 
    		 MUX_2_Sel :out std_logic_vector (1 downto 0); 
    		 MUX_3_Sel :out std_logic_vector (1 downto 0); 
@@ -57,8 +57,10 @@ case State is
 				next_State := S_right_pad_reg_write;
 			when "1000" =>		--JAL
 				next_State := S_alu_pad_9;
-			when "0110" or "0111" =>			--LM or SM
+			when "0110" =>			--LM
 				next_State := S_reg_read_write;
+			when "0111" =>			--SM
+				next_State := S_reg_read_write;				
 			when "1001" =>		--JLR
 				next_State := S_reg_write_2; 
 			when others =>		-- Other cases
@@ -71,7 +73,29 @@ case State is
 			
 		case ir(15 downto 12) is
 					
-			when "0000" or "0010" => -- ADD or NAND
+			when "0000" => -- ADD 
+						
+				if(ir(1 downto 0) = "00" ) then		--ADD or NDU
+					next_State:= S_alu_op;
+						
+				elsif(ir(1 downto 0) = "10" ) then 	--ADC or NDC
+					if(carry_flag = '1') then
+						next_State:= S_alu_op;
+					else
+						next_State:=S_update_PC;
+					end if;
+							
+				elsif(ir(1 downto 0) = "01" ) then	--ADZ or NDZ
+					if(zero_flag= '1') then
+						next_State:= S_alu_op;
+					else
+						next_State:=S_update_PC;
+					end if;
+				else
+						
+				end if;
+				
+			when "0010" => -- NAND
 						
 				if(ir(1 downto 0) = "00" ) then		--ADD or NDU
 					next_State:= S_alu_op;
@@ -94,7 +118,11 @@ case State is
 				end if;
 					
 
-			when "0001" or "0100" or "0101" =>	-- ADI or LW or SW
+			when "0001" =>	--ADI
+				next_State := S_alu_op_imm_6;
+			when "0100" =>	--LW
+				next_State := S_alu_op_imm_6;
+			when "0101" =>	--SW
 				next_State := S_alu_op_imm_6;
 			when "1100" => 			-- BEQ
 				next_State := S_alu_op;
@@ -108,7 +136,9 @@ case State is
 
 	when S_alu_op =>
 		case ir(15 downto 12) is		
-			when "0000" or "0010" => -- ADD or NAND
+			when "0000" =>	--AND
+				next_State := S_reg_write;
+			when "0010" => -- NAND
 				next_State := S_reg_write;
 			when "1100" =>		-- BEQ
 				next_State := S_alu_pad_6;
@@ -296,7 +326,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 
@@ -357,7 +387,7 @@ end process;
 					 MUX_2_Sel <="11";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 						 						 	  
@@ -376,11 +406,11 @@ end process;
 							c_write <= '1';
 						 	z_write <= '1';
 						 	
-						 	if (ir_out(15 downto 13) = "000") then	-- ADD/ADI
+						 	if (ir(15 downto 13) = "000") then	-- ADD/ADI
 						 		alu_control<="00";
-						 	elsif (ir_out(15 downto 12) = "0010") then	--NAND
+						 	elsif (ir(15 downto 12) = "0010") then	--NAND
 						 		alu_control<="01";
-						 	elsif (ir_out(15 downto 12) = "1100") then  -- BEQ
+						 	elsif (ir(15 downto 12) = "1100") then  -- BEQ
 						 		alu_control<="10";
 						 	else
 						 		alu_control<="11";
@@ -392,7 +422,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="10";
 					 MUX_7_Sel <="111";
 						 	  
@@ -419,7 +449,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="11"; 
 					 MUX_4_Sel <="111";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 						 when S_right_pad_reg_write =>
@@ -445,7 +475,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="11"; 
 					 MUX_4_Sel <="110";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";		
 						   				   
@@ -471,7 +501,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 						 	
@@ -498,7 +528,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="11"; 
 					 MUX_4_Sel <="101";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 					 	when S_reg_write_from_T4 =>
@@ -524,7 +554,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="11"; 
 					 MUX_4_Sel <="100";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 				   	 
@@ -551,7 +581,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="10"; 
 					 MUX_4_Sel <="100";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00"; 
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 						 	
@@ -578,7 +608,7 @@ end process;
 					 MUX_2_Sel <="10";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 				   	 
@@ -605,7 +635,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00"; 
 					 MUX_6_Sel <="10";
 					 MUX_7_Sel <="101";
 						 	
@@ -631,7 +661,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00"; 
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 				   	 
@@ -659,7 +689,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="11";; 
+					 MUX_5_Sel <="11";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 				   	 	
@@ -686,7 +716,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="11";
 					 MUX_7_Sel <="101";
 				   	 
@@ -713,7 +743,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="10";; 
+					 MUX_5_Sel <="10";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 				   	 
@@ -743,7 +773,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00"; 
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 				   	 	
@@ -772,7 +802,7 @@ end process;
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00"; 
 					 MUX_6_Sel <="01";
 					 MUX_7_Sel <="100";
 				   	 	
@@ -801,7 +831,7 @@ alu_control <= "00";
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="11";
 					 MUX_7_Sel <="110";
 
@@ -830,7 +860,7 @@ alu_control <= "11";
 					 MUX_2_Sel <="10";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 
@@ -859,7 +889,7 @@ alu_control <= "11";
 					 MUX_2_Sel <="01";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="00";; 
+					 MUX_5_Sel <="00"; 
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 
@@ -880,7 +910,7 @@ alu_control <= "11";
 						 	PE_write <= '0';
 						 	PE_reg_write <= '0';
 
-alu_control <= "11 ";
+alu_control <= "11";
 
 					 Set_Pos_Zero_init <= '0';
 
@@ -888,7 +918,7 @@ alu_control <= "11 ";
 					 MUX_2_Sel <="00";
 					 MUX_3_Sel <="00"; 
 					 MUX_4_Sel <="000";
-					 MUX_5_Sel <="01";; 
+					 MUX_5_Sel <="01";
 					 MUX_6_Sel <="00";
 					 MUX_7_Sel <="000";
 
