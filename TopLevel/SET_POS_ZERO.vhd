@@ -2,10 +2,13 @@ library ieee;
 use ieee.std_logic_1164.all;  
  
 entity SET_POS_ZERO is  
-	port (X : in std_logic_vector (7 downto 0); 
-		  POS:in std_logic_vector (2 downto 0); 
-		  init :in std_logic; 
-		  Y :out std_logic_vector (7 downto 0));  
+	port(
+			X:		in std_logic_vector (7 downto 0); 
+			POS:	in std_logic_vector (2 downto 0); 
+			init:	in std_logic; 
+			  
+			Y:		out std_logic_vector (7 downto 0)
+		);  
 end SET_POS_ZERO;  
 
 architecture Struct of SET_POS_ZERO is  

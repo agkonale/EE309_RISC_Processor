@@ -3,7 +3,12 @@ use ieee.std_logic_1164.all;
 
 
 entity COMPARATOR is
-   port (X1,X0: in std_logic_vector(15 downto 0); Z: out std_logic);
+   port(
+	   	    X1: in std_logic_vector(15 downto 0); 
+	   		X0: in std_logic_vector(15 downto 0); 
+	   		
+	   		Z:	out std_logic
+   		);
 end entity;
 
 

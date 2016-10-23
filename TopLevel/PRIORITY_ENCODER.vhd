@@ -2,8 +2,11 @@ library ieee;
 use ieee.std_logic_1164.all;  
  
 entity PRIORITY_ENCODER is  
-	port (X : in std_logic_vector (7 downto 0); 
-		  Y :out std_logic_vector (2 downto 0));  
+	port(
+			X :	in std_logic_vector (7 downto 0); 
+
+		  	Y :	out std_logic_vector (2 downto 0)
+		);  
 end PRIORITY_ENCODER;  
 
 architecture Struct of PRIORITY_ENCODER is  

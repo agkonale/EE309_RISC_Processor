@@ -6,9 +6,15 @@ use ieee.numeric_std.all;
 
 entity DATA_REGISTER is
 	generic (data_width:integer);
-	port (Din: in std_logic_vector(data_width-1 downto 0);
-	      Dout: out std_logic_vector(data_width-1 downto 0);
-	      clk,enable,reset: in std_logic);
+	port(
+			clk:	in std_logic;
+			reset: 	in std_logic;
+			enable: in std_logic;			
+			Din: 	in std_logic_vector(data_width-1 downto 0);
+			
+	      	Dout: 	out std_logic_vector(data_width-1 downto 0)
+	      	
+	     );
 end entity;
 
 

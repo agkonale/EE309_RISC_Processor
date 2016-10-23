@@ -6,11 +6,21 @@ library work;
 use work.General_Components.all;
 
 entity REGISTER_FILE is
-	port (A1,A2,A3 :in std_logic_vector(2 downto 0); 
-		  DPC,D3: in std_logic_vector(15 downto 0); 
-		  reg_write,PC_write: in std_logic; 
-		  D1,D2,PC: out std_logic_vector(15 downto 0); 
-		  clk,reset: in std_logic);	 
+	port(
+			clk: 		in std_logic;
+			reset: 		in std_logic;
+			A1:			in std_logic_vector(2 downto 0);
+			A2:			in std_logic_vector(2 downto 0);
+			A3:			in std_logic_vector(2 downto 0); 
+			DPC: 		in std_logic_vector(15 downto 0); 
+			D3: 		in std_logic_vector(15 downto 0); 
+			reg_write: 	in std_logic; 
+			PC_write: 	in std_logic;
+			 
+			D1: 		out std_logic_vector(15 downto 0); 
+			D2: 		out std_logic_vector(15 downto 0); 
+			PC: 		out std_logic_vector(15 downto 0)
+		);	 
 end entity;
 
 architecture Behave of REGISTER_FILE is
@@ -39,21 +49,19 @@ if(clk'event and (clk  = '1')) then
 end if;		
 end process;
 
-read: process(clk)
+read: process(REG_16X8)
 variable A1_INT,A2_INT :integer range 0 to 7;
 begin
-if(clk'event and (clk  = '1')) then	
-	if(reset='1') then
-		D1		<= "0000000000000000";
-		D2		<= "0000000000000000"; 
-		PC 		<= "0000000000000000";
-	else		
-		A1_INT	:= to_integer(unsigned(A1)); 
-		A2_INT	:= to_integer(unsigned(A2));  
-		D1		<= REG_16X8(A1_INT); 
-		D2		<= REG_16X8(A2_INT); 
-		PC 		<= REG_16X8(7);
-	end if;
+if(reset='1') then
+	D1		<= "0000000000000000";
+	D2		<= "0000000000000000"; 
+	PC 		<= "0000000000000000";
+else		
+	A1_INT	:= to_integer(unsigned(A1)); 
+	A2_INT	:= to_integer(unsigned(A2));  
+	D1		<= REG_16X8(A1_INT); 
+	D2		<= REG_16X8(A2_INT); 
+	PC 		<=  REG_16X8 (7);
 end if;
 end process;
 		
